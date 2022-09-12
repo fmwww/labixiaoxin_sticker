@@ -42,16 +42,17 @@
 
   function draw(canvas, ctx, time, text, baseImg, displayImg) {
     loadBaseImg(baseImg, () => {
+      let origin = [305, 305];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(baseImg, 0, 0, canvas.width, canvas.height);
 
       ctx.beginPath();
       ctx.lineWidth = 3;
       ctx.strokeStyle = '#914d42';
-      ctx.moveTo(302, 302);
-      ctx.lineTo(...rotateTo([300, 302], 25, needleAngle(time.getMinutes(), 60) - 48));
-      ctx.moveTo(302, 302);
-      ctx.lineTo(...rotateTo([300, 302], 20, needleAngle(time.getHours(), 12) - 48));
+      ctx.moveTo(...origin);
+      ctx.lineTo(...rotateTo(origin, 25, needleAngle(time.getMinutes(), 60) - 48));
+      ctx.moveTo(...origin);
+      ctx.lineTo(...rotateTo(origin, 20, needleAngle(time.getHours(), 12) - 48));
       ctx.stroke();
       ctx.closePath();
 
