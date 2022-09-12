@@ -13,6 +13,10 @@
     <button id="go">生成</button>
 </div>
 <div>
+    <button class="quick-entry">核酸</button>
+    <button class="quick-entry">干饭</button>
+</div>
+<div>
     <canvas id="canvas" width="500" height="500"></canvas>
     <img id="display" alt="">
 </div>
@@ -28,6 +32,13 @@
   document.querySelector('#go').addEventListener('click', () => {
     draw(canvas, ctx, new Date(), text.value, new Image(), document.querySelector('#display'));
   });
+
+  let quickEntries = document.querySelectorAll('.quick-entry');
+  for (const quickEntry of quickEntries) {
+    quickEntry.addEventListener('click', function() {
+      draw(canvas, ctx, new Date(), this.innerText, new Image(), document.querySelector('#display'));
+    });
+  }
 
   function draw(canvas, ctx, time, text, baseImg, displayImg) {
     loadBaseImg(baseImg, () => {
